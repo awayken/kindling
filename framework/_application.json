@@ -14,6 +14,6 @@
 	"dev_library": "kindling_lib",
 	
 	"local_domain": "http://localhost",
-	"local_dsn": "kindling",
-	"local_library": "kindling_lib"
+	"local_dsn": "",
+	"local_library": "_library"
 }
