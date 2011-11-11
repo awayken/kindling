@@ -38,7 +38,7 @@
 			<cfset application.helpers.templates = createObject("component", "#application.config.library#.templates.helper") />
 			
 			<cfcatch>
-				<cfdump var="#cfcatch#">
+				<cfif application.status EQ "local"><cfdump var="#cfcatch#" label="onApplicationStart - application.helpers"></cfif>
 			</cfcatch>
 		</cftry>
 		
@@ -58,8 +58,14 @@
 			<cfset application.status = URL.setstatus />
 		</cfif>
 		
-		<!--- Use page helper to parse the current page and add to request scope --->
-		<cfset request.page = application.helpers.page.init(ExpandPath(arguments.Template)) />
+		<cftry>
+			<!--- Use page helper to parse the current page and add to request scope --->
+			<cfset request.page = application.helpers.page.init(ExpandPath(arguments.Template)) />
+			
+			<cfcatch>
+				<cfif application.status EQ "local"><cfdump var="#cfcatch#" label="onRequestStart - page.init"></cfif>
+			</cfcatch>
+		</cftry>
 		
 		<cfreturn true />
 	</cffunction>
@@ -69,22 +75,34 @@
 		
 		<cfset var html = "" />
 		
-		<!--- Save templated page content in a variable --->
-		<cfsavecontent variable="html">
-			<!--- If we're not asking for raw and the page has a template --->
-			<cfif Not IsDefined("URL.raw") AND Len(request.page.getTemplate())>
-				<!--- Run page content through template helper using the appropriate template --->
-				<cfoutput>#application.helpers.templates.init(arguments.Template, request.page.getTemplate())#</cfoutput>
-				
-			<cfelse>
-				<!--- Just include the page as-is --->
-				<cfinclude template="#arguments.Template#" />
-				
-			</cfif>
-		</cfsavecontent>
+		<cftry>
+			<!--- Save templated page content in a variable --->
+			<cfsavecontent variable="html">
+				<!--- If we're not asking for raw and the page has a template --->
+				<cfif Not IsDefined("URL.raw") AND Len(request.page.getTemplate())>
+					<!--- Run page content through template helper using the appropriate template --->
+					<cfoutput>#application.helpers.templates.init(arguments.Template, request.page.getTemplate())#</cfoutput>
+					
+				<cfelse>
+					<!--- Just include the page as-is --->
+					<cfinclude template="#arguments.Template#" />
+					
+				</cfif>
+			</cfsavecontent>
+			
+			<cfcatch>
+				<cfif application.status EQ "local"><cfdump var="#cfcatch#" label="onRequest - templates.init"></cfif>
+			</cfcatch>
+		</cftry>
 		
-		<!--- Run our template page through the plugin helper --->
-		<cfoutput>#application.helpers.plugins.init(html)#</cfoutput>
+		<cftry>
+			<!--- Run our template page through the plugin helper --->
+			<cfoutput>#application.helpers.plugins.init(html)#</cfoutput>
+			
+			<cfcatch>
+				<cfif application.status EQ "local"><cfdump var="#cfcatch#" label="onRequest - plugins.init"></cfif>
+			</cfcatch>
+		</cftry>
 		
 		<cfreturn />
 	</cffunction>
