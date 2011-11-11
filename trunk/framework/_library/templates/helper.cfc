@@ -16,7 +16,13 @@
 			
 		<cfelse>
 			<cfsavecontent variable="local.template">
-				<cfinclude template="#local.templatepath#" />
+				<cftry>
+					<cfinclude template="#local.templatepath#" />
+					
+					<cfcatch>
+						<cfinclude template="/#local.templatepath#" />
+					</cfcatch>
+				</cftry>
 			</cfsavecontent>
 			
 			<cfsavecontent variable="local.page">
