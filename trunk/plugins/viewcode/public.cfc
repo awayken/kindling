@@ -19,7 +19,7 @@ Author URI: http://www.awayken.com
 		</cfif>
 		
 <cfsavecontent variable="local.html"><cfoutput>
-<div id="#hash(local.filepath)#" class="viewcode">
+<div id="code_#hash(local.filepath)#" class="viewcode">
 	<div class="toolbox">
 		<span>#ListLast(arguments.file, "/")#</span>
 		<a href="#arguments.file#" target="_blank"><cfif ListLast(arguments.file, ".") EQ "cfm">View page<cfelse>Download file</cfif></a>
