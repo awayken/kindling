@@ -1,0 +1,56 @@
+#summary Install Kindling
+
+= Install Kindling =
+
+Kindling uses [http://json.org/ JSON] files to store metadata that might otherwise live in database tables. The main reason for this is to eliminate database dependence for out-of-the-box Kindling installs. Since metadata is a form of content, it lives amongst the data it describes.
+
+== The Application Data File ==
+
+Kindling uses an `_application.json` file (called the application data file) to configure the website. Here is a sample application data file:
+
+{{{
+<code language="javascript">
+{
+	"name": "Kindling Documentation",
+	
+	"live_domain": "http://code.google.com/p/kindling",
+	"live_dsn": "kindling",
+	"live_library": "kindling_lib",
+	
+	"dev_domain": "http://kindling.www",
+	"dev_dsn": "kindling",
+	"dev_library": "kindling_lib",
+	
+	"local_domain": "http://localhost",
+	"local_dsn": "",
+	"local_library": "_library"
+}
+</code>
+}}}
+
+One application data file is used to describe three possible status of the application: live, dev, and local. This allows you to use the exact same code for your site across servers. The system sets an application variable, `application.status`, which you can use to program status-dependent behavior. onApplicationStart, the system uses the domains you provide to determine which status is active. Alternatively, you can force the application status manually by appending `?setstatus=[status]` to your URL. You can reinitialize your application by appending `?reinit` to your URL.
+
+The following table defines the different properties that can be set in an application data file.
+
+
+|| PROPERTY ||	EXAMPLE ||	DEFINITION ||
+|| name ||	Kindling Documentation ||	Sets the Application's name. You should still modify the `this.name` property in the `Application.cfc` file, but this property will be used for error reporting. ||
+|| live_domain ||	http://code.google.com/p/kindling ||	Sets the domain name for the live status of the application. ||
+|| live_dsn	|| kindling ||	Sets the datasource for the live status of the application. ||
+|| live_library ||	kindling_lib ||	Sets the library mapping for the live status of the application.||
+|| dev_domain ||	http://kindling.www ||	Sets the domain name for the dev status of the application. ||
+|| dev_dsn ||	kindling ||	Sets the datasource for the dev status of the application. ||
+|| dev_library ||	kindling_lib ||	Sets the library mapping for the dev status of the application. ||
+|| local_domain ||	http://localhost ||	Sets the domain name for the local status of the application. ||
+|| local_dsn ||	kindling ||	Sets the datasource for the local status of the application. ||
+|| local_library ||	_library ||	Sets the library mapping for the local status of the application. ||
+
+
+== Application Variables ==
+
+Kindling exposes all the properties of your application data file, as well as some other values, in the form of application variables. These variables are there for your usage and convenience and will only update when the application is initialized.
+
+|| PROPERTY ||	DEFINITION ||
+|| application.config	|| This structure is basically an encapsulation of your application data file. Additionally, it includes three "shortcut" values of `application.config.domain`, `application.config.dsn`, and `application.config.library`. These three values are identical to the domain, dsn, and library of your current application's status. This is one reason why the same code can be used on all three status. ||
+|| application.homepath ||	A string that is the expanded path to the root of the SMS Campfire site. ||
+|| application.status ||	A string that is the current status of your application. Will either be live, dev, or local. If the application can't determine what the status is based on your application data file, it will assume a status of live, which should the most secured and end-user-friendly version of your application. You can force the application status manually by appending `?setstatus=[status]` to your URL. ||

@@ -1,0 +1,19 @@
+#summary About Kindling
+
+= About Kindling =
+
+Content management systems are convenient and powerful, but they create a separation of content: developer versus user. Users want abstract content that they can create and manage with simple tools in a convenient location. Developers want self-evident content that is quickly modified or duplicated, and they want to do so using developers tools like version control and programming IDEs.
+
+Kindling seeks to be a compromise of those two competing groups. A developer can trust that the content of a page lives at that URL; a user can trust that content will be abstracted from much of the programming that makes up the website. In return, a user will have to take some steps to learn Kindling's rules and structure, and a developer will have to accommodate the template and plugin architecture of it.
+
+Thankfully, this wiki is here to help with both groups. You'll be toasting s'mores in no time!
+
+== Why "Kindling"? ==
+
+It comes from this philosophy: a great website is a campfire, and content is the kindling. The more you can concentrate on it, the better your campfire will be.
+
+== Why so many underscores? ==
+
+The underscore ( _ ) is used to designate special files or folders in the Kindling folder structure. One reason is that this allows those files and folders to sort near the top when using common operating system file name sorting. The other reason is that underscores are not usually used in the names of content files or folders, thereby eliminating potential naming collisions.
+
+Imagine that you wanted to name your application library folder "library" instead of "_library", which is perfectly in your right to do. Then imagine that the flowchart for the website calls for a "library" section, where the client plans to host a document library. Now there's a conflict, and one of the folders has to change. The use of an underscore for system folders and files eliminates that potential conflict.
