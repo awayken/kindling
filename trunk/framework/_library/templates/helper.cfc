@@ -8,7 +8,7 @@
 		<cfset var local = {} />
 		
 		<cfset local.regionregex = "@\(.+?\)" />
-		<cfset local.templatepath = "/" & application.config.library & "/templates/" & arguments.template & ".cfm" />
+		<cfset local.templatepath = application.config.library & "/templates/" & arguments.template & ".cfm" />
 		<cfset local.templatefullpath = application.homepath & local.templatepath />
 		
 		<cfif Not FileExists(local.templatefullpath)>
