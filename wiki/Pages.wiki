@@ -20,7 +20,7 @@ Here is a sample page:
 @(/main)
 }}}
 
-The content is broken into two regions, which are named sidebar and main. These regions can contain anything. If you look through the regions, you'll see HTML, plugin invocations, and even some CFML code. Because of the way ColdFusion's server builds its pages, you don't have to worry about what content is allowable. Feel free to push your Kindling pages as far as you would push any CFML page.
+The content is broken into two regions, which are named sidebar and main. These regions can contain anything. If you look through the regions, you'll see HTML, plugin invocations, and even some CFML code. Because of the way !ColdFusion's server builds its pages, you don't have to worry about what content is allowable. Feel free to push your Kindling pages as far as you would push any CFML page.
 
 == Page Data ==
 
@@ -55,7 +55,7 @@ Page Data is a way of describing the content in the page; essentially, it's the 
 }
 }}}
 
-Page data files have the same filename as the file they describe, but they use the `.json` extension instead. This file works the same way the application data file does. It simply defines a JavaScript object to house such data as the desired page template, the page name, additional headers or footers, and more.
+Page data files have the same filename as the file they describe, but they use the `.json` extension instead. This file works the same way the application data file does. It simply defines a !JavaScript object to house such data as the desired page template, the page name, additional headers or footers, and more.
 
 The following table defines the different properties that can be set in a page data file.
 
@@ -66,5 +66,5 @@ The following table defines the different properties that can be set in a page d
 || description ||	The description of the page, as would be found in the meta tag of the same name. ||
 ||keywords	||	The keywords of the page, as would be found in the meta tag of the same name. ||
 || visible	||	Should the page be considered visible or not? In the case of dynamic menus or navigation, this property would allow you to hide pages but still allow them to be viewed by those who know the URL. ||
-|| headers	|| Commonly called additional headers, this property allows for HTML, JavaScript, or CSS to be additionally dropped into your page's `<head>`. The Page helper automatically generates HTML for the scripts and styles properties, which should be a list of one or more paths to files of that type. ||
-|| footers	|| Commonly called additional footers, this property allows for HTML, JavaScript, or CSS to be additionally dropped into your page right before the closing `<body>`. The Page helper automatically generates HTML for the scripts and styles properties, which should be a list of one or more paths to files of that type. ||
+|| headers	|| Commonly called additional headers, this property allows for HTML, !JavaScript, or CSS to be additionally dropped into your page's `<head>`. The Page helper automatically generates HTML for the scripts and styles properties, which should be a list of one or more paths to files of that type. ||
+|| footers	|| Commonly called additional footers, this property allows for HTML, !JavaScript, or CSS to be additionally dropped into your page right before the closing `<body>`. The Page helper automatically generates HTML for the scripts and styles properties, which should be a list of one or more paths to files of that type. ||
