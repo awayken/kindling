@@ -8,7 +8,7 @@ Kindling uses [http://json.org/ JSON] files to store metadata that might otherwi
 
 Kindling uses an `_application.json` file (called the application data file) to configure the website. Here is a sample application data file:
 
-<code language="javascript">
+{{{
 {
 	"name": "Kindling Documentation",
 	
@@ -22,9 +22,9 @@ Kindling uses an `_application.json` file (called the application data file) to 
 	
 	"local_domain": "http://localhost",
 	"local_dsn": "",
-	"local_library": "__library"
+	"local_library": "_library"
 }
-</code>
+}}}
 
 One application data file is used to describe three possible status of the application: live, dev, and local. This allows you to use the exact same code for your site across servers. The system sets an application variable, `application.status`, which you can use to program status-dependent behavior. onApplicationStart, the system uses the domains you provide to determine which status is active. Alternatively, you can force the application status manually by appending `?setstatus=[status]` to your URL. You can reinitialize your application by appending `?reinit` to your URL.
 

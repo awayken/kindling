@@ -3,8 +3,6 @@
 
 = Overview =
 
-<g:plusone size="medium"></g:plusone>
-
 *Kindling* is a CFML framework that aims to make it easy for developers to get a new website up-and-running. It is not a content management system; it's a content-focused template and plugin system. It's configurable, it's flexible, and it's simple.
 
 To begin exploring Kindling, choose from one of the following sections:
