@@ -11,6 +11,7 @@ To begin exploring Kindling, choose from one of the following sections:
  * [Setup Setup Kindling]
  * [Pages Creating Pages in Kindling]
  * [Templates Creating Templates in Kindling]
+ * [Plugins Creating Plugins in Kindling]
  * [About About Kindling]
 
 Submit questions or issues to [http://code.google.com/p/kindling/issues/list the Issues tab].
