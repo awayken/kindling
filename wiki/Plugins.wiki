@@ -6,7 +6,7 @@
 
 Kindling allows developers a lot of freedom in their content pages. You can build full-fledged applications using Kindling and the CFML conventions that you're used to. However, Kindling does offer a plugin system, making it easy to invoke code in your content pages or templates.
 
-You can invoke a plugin using similar syntax to defining a region: `@‍[NAME ATTRIBUTE1="VALUE" ATTRIBUTE2="VALUE"]`. The `NAME` corresponds to the folder within plugins in the library that contains the plugin component. All attributes are passed to the plugin like you're used to. To see a plugin invocation in action, check out this example:
+You can invoke a plugin using similar syntax to defining a region: `@‍[NAME ATTRIBUTE1="VALUE" ATTRIBUTE2="VALUE" ...]`. The `NAME` corresponds to the folder within plugins in the library that contains the plugin component. All attributes are passed to the plugin like you're used to. To see a plugin invocation in action, check out this example:
 
 {{{
 @(main)
@@ -17,7 +17,7 @@ You can invoke a plugin using similar syntax to defining a region: `@‍[NAME AT
 
 == Writing Plugins ==
 
-Plugins are just folders with CFCs in them. You really write your plugin no differently than you would any sort of ColdFusion component. There four requirements for a plugin:
+Plugins are just folders with CFCs in them. You really write your plugin no differently than you would any sort of !ColdFusion component. There four requirements for a plugin:
 
  # Your plugin must live in a folder whose name is the name of your plugin, like `viewcode`
  # Your plugin must have a `public.cfc` component
