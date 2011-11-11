@@ -22,7 +22,7 @@ Kindling uses an `_application.json` file (called the application data file) to 
 	
 	"local_domain": "http://localhost",
 	"local_dsn": "",
-	"local_library": "_library"
+	"local_library": "__library"
 }
 </code>
 
