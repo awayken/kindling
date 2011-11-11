@@ -8,21 +8,15 @@
 		<cfset var local = {} />
 		
 		<cfset local.regionregex = "@\(.+?\)" />
-		<cfset local.templatepath = application.config.library & "/templates/" & arguments.template & ".cfm" />
-		<cfset local.templatefullpath = application.homepath & local.templatepath />
+		<cfset local.templatefile = arguments.template & ".cfm" />
+		<cfset local.templatefilepath = application.config.library & "/templates/" & local.templatefile />
 		
-		<cfif Not FileExists(local.templatefullpath)>
-			<cfthrow message="Template file does not exist." detail="The template file, '#local.templatepath#', could not be found. Please create this template file or set your page to use an alternate template." />
+		<cfif Not FileExists(ExpandPath(local.templatefilepath))>
+			<cfthrow message="Template file does not exist." detail="The template file, '#local.templatefilepath#', could not be found. Please create this template file or set your page to use an alternate template." />
 			
 		<cfelse>
 			<cfsavecontent variable="local.template">
-				<cftry>
-					<cfinclude template="#local.templatepath#" />
-					
-					<cfcatch>
-						<cfinclude template="/#local.templatepath#" />
-					</cfcatch>
-				</cftry>
+				<cfinclude template="#local.templatefile#" />
 			</cfsavecontent>
 			
 			<cfsavecontent variable="local.page">
