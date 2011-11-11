@@ -10,5 +10,6 @@ To begin exploring Kindling, choose from one of the following sections:
  * [Install]
  * [Setup]
  * [About]
+ * [Pages]
 
 Submit questions or issues to [http://code.google.com/p/kindling/issues/list the Issues tab].
