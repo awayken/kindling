@@ -11,7 +11,7 @@
 		<cfset local.templatefile = arguments.template & ".cfm" />
 		<cfset local.templatefilepath = application.config.library & "/templates/" & local.templatefile />
 		
-		<cfif Not FileExists(ExpandPath(local.templatefilepath))>
+		<cfif Not FileExists(application.homepath & local.templatefilepath)>
 			<cfthrow message="Template file does not exist." detail="The template file, '#local.templatefilepath#', could not be found. Please create this template file or set your page to use an alternate template." />
 			
 		<cfelse>
