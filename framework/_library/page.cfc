@@ -19,7 +19,7 @@
 			var pagedata = getPage(arguments.targetpagepath);
 			
 			setPath(lCase(Replace(arguments.targetpagepath, "\", "/", "all")));
-			setURL(application.config.domain & "/" & ReplaceNoCase(getPath(), application.homepath, ""));
+			setURL(application.config.domain & "/" & ReplaceNoCase(getPath(), Replace(application.homepath, "\", "/", "all"), ""));
 			setTemplate(pagedata.template);
 			setName(pagedata.name);
 			setTitle(pagedata.title);
