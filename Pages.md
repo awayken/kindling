@@ -1,0 +1,69 @@
+# Creating Pages in Kindling #
+
+The focus of Kindling is the page. Pages are CFM pages full of content. Pages live where you think they live, and they have page data files for titles, descriptions, and more. At the very least, they contain some HTML. At the very most, they can also segment content by template regions, invoke plugins, and even execute CFML code.
+
+Here is a sample page:
+
+```
+@(sidebar)
+	<cfset message = "Hello, world!">
+	<p><cfoutput>#message#</cfoutput></p>
+@(/sidebar)
+
+@(main)
+	<p>Welcome to Kindling.</p>
+	
+	<p>Take a look at the actual content of this very page:</p>
+	@[viewcode file="/pages/index.cfm"]
+@(/main)
+```
+
+The content is broken into two regions, which are named sidebar and main. These regions can contain anything. If you look through the regions, you'll see HTML, plugin invocations, and even some CFML code. Because of the way ColdFusion's server builds its pages, you don't have to worry about what content is allowable. Feel free to push your Kindling pages as far as you would push any CFML page.
+
+## Page Data ##
+
+Page Data is a way of describing the content in the page; essentially, it's the meta data for that page. Here are a couple examples of page data files. The first is a simple example. The second is a "kitchen sink" example.
+
+```
+{
+	"template":"interior",
+	"name":"The Simple Demo",
+	"title":"How to create pages and set page data in SMS Campfire"
+}
+```
+
+```
+{
+	"template":"interior",
+	"name":"Kitchen Sink",
+	"title":"The Kitchen Sink Demo",
+	"description":"A demo of all the properties in the page data JSON file.",
+	"keywords":"demo, json, file, data, kitchen sink, sms campfire",
+	"visible":true,
+	"headers":{
+		"styles":"kitchensink.css",
+		"html":"<meta name=\"author\" content=\"Miles Rausch\" />",
+		"scripts":""
+	},
+	"footers":{
+		"styles":"",
+		"html":"<div class=\"tangerine\">I'm a <strong>really</strong> fancy font set in Tangerine.</div>",
+		"scripts":"kitchensink.js,http://ajax.googleapis.com/ajax/libs/webfont/1.0.6/webfont.js"
+	}
+}
+```
+
+Page data files have the same filename as the file they describe, but they use the `.json` extension instead. This file works the same way the application data file does. It simply defines a JavaScript object to house such data as the desired page template, the page name, additional headers or footers, and more.
+
+The following table defines the different properties that can be set in a page data file.
+
+| PROPERTY	|	DEFINITION |
+|:---------|:-----------|
+| template	|	While this property is not technically required, it doesn't do you any favors to exclude it. Without a template declaration, Kindling will render the page as "raw" (the equivalent of adding `?raw` to the end of the URL). This will display the file as it exists on the server, including the template and plugin syntax. **NOTE: If you set this value to a template which doesn't exist, Kindling will throw an exception.** |
+| name	|	The name of the page. Perfect for use in page headings or dynamic menus or navigation. This is generally a shortened version of the title. |
+| title	|	The title of the page, as it would appear in the `<title>`. |
+| description |	The description of the page, as would be found in the meta tag of the same name. |
+|keywords	|	The keywords of the page, as would be found in the meta tag of the same name. |
+| visible	|	Should the page be considered visible or not? In the case of dynamic menus or navigation, this property would allow you to hide pages but still allow them to be viewed by those who know the URL. |
+| headers	| Commonly called additional headers, this property allows for HTML, JavaScript, or CSS to be additionally dropped into your page's `<head>`. The Page helper automatically generates HTML for the scripts and styles properties, which should be a list of one or more paths to files of that type. |
+| footers	| Commonly called additional footers, this property allows for HTML, JavaScript, or CSS to be additionally dropped into your page right before the closing `<body>`. The Page helper automatically generates HTML for the scripts and styles properties, which should be a list of one or more paths to files of that type. |
